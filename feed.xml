@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[Go 语言深度入门手册]]></title>
+        <description><![CDATA[Go 语言深度入门手册，帮你更好的理解 Go 语言，写出更高效、更规范、更不易出错的代码]]></description>
+        <link>https://www.lijiaocn.com/go-detail/</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Mon, 30 Dec 2019 10:46:38 GMT</lastBuildDate>
+        <atom:link href="https://www.lijiaocn.com/go-detail/feed.xml" rel="self" type="application/rss+xml"/>
+        <author><![CDATA[李佶澳]]></author>
+        <item>
+            <title><![CDATA[Go 语言深度入门手册]]></title>
+            <description><![CDATA[Go 语言深度入门手册，帮你更好的理解 Go 语言，写出更高效、更规范、更不易出错的代码。]]></description>
+            <link>https://www.lijiaocn.com/go-detail/</link>
+            <guid isPermaLink="true">https://www.lijiaocn.com/go-detail/</guid>
+            <dc:creator><![CDATA[李佶澳]]></dc:creator>
+        </item>
+        <item>
+            <title><![CDATA[Go 语言项目的代码管理]]></title>
+            <description><![CDATA[为什么把这一节放在最前面？因为这就是最首要的事情。]]></description>
+            <link>https://www.lijiaocn.com/go-detail/article/pkg.html</link>
+            <guid isPermaLink="true">https://www.lijiaocn.com/go-detail/article/pkg.html</guid>
+            <dc:creator><![CDATA[李佶澳]]></dc:creator>
+        </item>
+    </channel>
+</rss>
