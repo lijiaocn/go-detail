@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>代码要如何组织？ · 小鸟笔记·李佶澳·影响一万人</title>
+        <title>测试用例的覆盖率 · 小鸟笔记·李佶澳·影响一万人</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -66,10 +66,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="create_mod.html" />
+    <link rel="next" href="varcopy.html" />
     
     
-    <link rel="prev" href="../" />
+    <link rel="prev" href="create_mod.html" />
     
 
     <link href="https://www.lijiaocn.com/go-detail/feed.xml" title="Go 语言深度入门手册" rel="alternate" type="application/rss+xml" />
@@ -191,7 +191,7 @@ var _hmt = _hmt || [];
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="pkg.html">
+        <li class="chapter " data-level="1.2" data-path="pkg.html">
             
                 <a href="pkg.html">
             
@@ -223,7 +223,7 @@ var _hmt = _hmt || [];
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="testcase.html">
+        <li class="chapter active" data-level="1.3" data-path="testcase.html">
             
                 <a href="testcase.html">
             
@@ -295,7 +295,7 @@ var _hmt = _hmt || [];
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >代码要如何组织？</a>
+        <a href=".." >测试用例的覆盖率</a>
     </h1>
 </div>
 
@@ -348,58 +348,67 @@ var _hmt = _hmt || [];
 
                                 <!-- toc -->
 <ul>
-<li><a href="#go-&#x8BED;&#x8A00;&#x9879;&#x76EE;&#x7684;&#x4EE3;&#x7801;&#x7BA1;&#x7406;">Go &#x8BED;&#x8A00;&#x9879;&#x76EE;&#x7684;&#x4EE3;&#x7801;&#x7BA1;&#x7406;</a><ul>
-<li><a href="#&#x8981;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;">&#x8981;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;</a></li>
-<li><a href="#&#x95EE;&#x9898;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;">&#x95EE;&#x9898;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</a></li>
+<li><a href="#&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x7684;&#x8986;&#x76D6;&#x7387;">&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x7684;&#x8986;&#x76D6;&#x7387;</a><ul>
 <li><a href="#&#x53C2;&#x8003;">&#x53C2;&#x8003;</a></li>
 </ul>
 </li>
 </ul>
 <!-- tocstop -->
-<h1 id="go-&#x8BED;&#x8A00;&#x9879;&#x76EE;&#x7684;&#x4EE3;&#x7801;&#x7BA1;&#x7406;">Go &#x8BED;&#x8A00;&#x9879;&#x76EE;&#x7684;&#x4EE3;&#x7801;&#x7BA1;&#x7406;</h1>
-<p>&#x4E3A;&#x4EC0;&#x4E48;&#x628A;&#x8FD9;&#x4E00;&#x8282;&#x653E;&#x5728;&#x6700;&#x524D;&#x9762;&#xFF1F;&#x56E0;&#x4E3A;&#x8FD9;&#x5C31;&#x662F;&#x6700;&#x9996;&#x8981;&#x7684;&#x4E8B;&#x60C5;&#x3002;</p>
-<p>Go &#x9879;&#x76EE;&#x7684;&#x6E90;&#x4EE3;&#x7801;&#x7BA1;&#x7406;&#x662F;&#x4E00;&#x4E2A;&#x8001;&#x5927;&#x96BE;&#x7684;&#x95EE;&#x9898;&#xFF0C;Russ Cox &#x5728;<a href="https://blog.golang.org/versioning-proposal" title="A Proposal for Package Versioning in Go" target="_blank">&#x300A;A Proposal for Package Versioning in Go&#x300B;</a>&#x4E2D;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;&#x4E86;&#x6574;&#x4E2A;&#x8FC7;&#x7A0B;&#xFF1A;&#x6700;&#x5F00;&#x59CB;&#x6BEB;&#x65E0;&#x529E;&#x6CD5;&#xFF0C;&#x7136;&#x540E;&#x9F13;&#x52B1;&#x793E;&#x533A;&#x81EA;&#x5DF1;&#x89E3;&#x51B3;&#xFF0C;&#x4E8E;&#x662F; godep&#x3001;glide &#x7B49;&#x904D;&#x5730;&#x5F00;&#x82B1;&#xFF0C;&#x4EBA;&#x4EBA;&#x82E6;&#x607C;&#xFF0C;&#x6700;&#x540E; Russ Cox &#x7075;&#x673A;&#x4E00;&#x52A8;&#xFF0C;&#x8BBE;&#x8BA1;&#x4E86; go module&#x3002;</p>
-<p>&#x4ECE; 1.13 &#x5F00;&#x59CB;&#xFF0C;GOPATH &#x4E0D;&#x518D;&#x662F;&#x5FC5;&#x987B;&#x7684;&#xFF0C;Go &#x7684;&#x9879;&#x76EE;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x4F4D;&#x4E8E;&#x4EFB;&#x610F;&#x4F4D;&#x7F6E;&#xFF0C;&#x53EA;&#x8981;&#x4F7F;&#x7528;&#x4E86; go module&#x3002;Go blog &#x7528;&#x4E86;&#x6574;&#x6574; 4 &#x7BC7;&#x535A;&#x5BA2;&#x4ECB;&#x7ECD;&#x5B83;&#x7684;&#x7528;&#x6CD5;&#xFF1A;</p>
-<ul>
-<li><a href="https://blog.golang.org/using-go-modules" title="Using Go Modules" target="_blank">Using Go Modules</a></li>
-<li><a href="https://blog.golang.org/migrating-to-go-modules" title="Migrating to Go Modules" target="_blank">Migrating to Go Modules</a></li>
-<li><a href="https://blog.golang.org/publishing-go-modules" title="Publishing Go Modules" target="_blank">Publishing Go Modules</a></li>
-<li><a href="https://blog.golang.org/v2-go-modules" title="Go Modules: v2 and Beyond" target="_blank">Go Modules: v2 and Beyond</a></li>
-</ul>
-<p>&#x628A;&#x8FD9;&#x56DB;&#x7BC7;&#x535A;&#x5BA2;&#x770B;&#x5B8C;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x544A;&#x522B;&#x672C;&#x9875;&#x4E86;&#x3002;</p>
-<h2 id="&#x8981;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;">&#x8981;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;</h2>
-<p>&#x6700;&#x65E9;&#x7684;&#x65F6;&#x5019; go get &#x76F4;&#x63A5;&#x4ECE; github &#x62C9;&#x53D6; master &#x4E0A;&#x7684;&#x6700;&#x65B0;&#x4EE3;&#x7801;&#xFF0C;&#x95EE;&#x9898;&#x7279;&#x522B;&#x5927;&#xFF0C;&#x4EE5;&#x81F3;&#x4E8E;&#x5F88;&#x591A;&#x4EBA;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x662F;&#x628A;&#x6574;&#x4E2A; GOPATH &#x76EE;&#x5F55;&#x4F5C;&#x4E3A;&#x9879;&#x76EE;&#x76EE;&#x5F55;&#xFF0C;&#x4F9D;&#x8D56;&#x4EE3;&#x7801;&#x7684;&#x66F4;&#x65B0;&#x6210;&#x4E3A;&#x5669;&#x68A6;&#xFF0C;&#x4E0D;&#x77E5;&#x9053;&#x4F9D;&#x8D56;&#x7684;&#x662F;&#x54EA;&#x4E2A;&#x7248;&#x672C;&#xFF0C;&#x81F3;&#x4E8E;&#x4F9D;&#x8D56;&#x7684;&#x4F9D;&#x8D56;&#x90A3;&#x5C31;&#x66F4; !@#$%^&amp;*()......</p>
-<p>&#x540E;&#x6765; godep&#x3001;glide&#x3001;dep&#xFF0C;&#x4EE5;&#x53CA; vendor &#x7B49;&#x5206;&#x522B;&#x89E3;&#x51B3;&#x4E86;&#x4F9D;&#x8D56;&#x4EE3;&#x7801;&#x7BA1;&#x7406;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x4EC5;&#x6B64;&#x800C;&#x5DF2;&#x3002;&#x5728;&#x5927;&#x578B;&#x9879;&#x76EE;&#x4E2D;&#xFF0C;&#x5E38;&#x5E38;&#x4F1A;&#x4F7F;&#x7528;&#x4E00;&#x5957;&#x4EE3;&#x7801;&#x7684;&#x4E0D;&#x540C;&#x7248;&#x672C;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x524D;&#x9762;&#x7684;&#x5404;&#x79CD;&#x5DE5;&#x5177;&#x5C31;&#x300C;&#x644A;&#x624B;&#x300D;&#x4E86;&#x3002;</p>
-<p>&#x53E6;&#x5916;&#xFF0C;&#x9879;&#x76EE;&#x5FC5;&#x987B;&#x4F4D;&#x4E8E; GOPATH &#x4E2D;&#x3001;&#x4EE3;&#x7801; repo &#x83B7;&#x53D6;&#x7F13;&#x6162;&#x5E76;&#x5360;&#x7528;&#x672C;&#x5730;&#x7A7A;&#x95F4;&#x7B49;&#x95EE;&#x9898;&#x4E5F;&#x8BA9;&#x4EBA;&#x70E6;&#x607C;&#x3002;</p>
-<h2 id="&#x95EE;&#x9898;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;">&#x95EE;&#x9898;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</h2>
-<p>Russ Cox &#x901A;&#x8FC7;&#x5F15;&#x5165;&#x7248;&#x672C;&#x7BA1;&#x7406;&#x65B9;&#x6CD5; <a href="https://semver.org/" title="Semantic Versioning 2.0.0" target="_blank">Semantic Versioning</a> &#x9650;&#x5B9A;&#x4E86;&#x95EE;&#x9898;&#x7A7A;&#x95F4;&#xFF0C;&#x7136;&#x540E;&#x91CD;&#x65B0;&#x8BBE;&#x8BA1;&#x4E86;&#x4F9D;&#x8D56;&#x4EE3;&#x7801;&#x7684;&#x7D22;&#x5F15;&#x548C;&#x83B7;&#x53D6;&#x65B9;&#x6CD5;&#xFF0C;&#x4EE5;&#x53CA;&#x672C;&#x5730;&#x7F13;&#x5B58;&#x673A;&#x5236;&#x3002;</p>
-<p>&#x4F9D;&#x8D56;&#x4EE3;&#x7801;&#x4EE5;&#x53CA;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x7684; Go &#x8BED;&#x8A00;&#x9879;&#x76EE;&#x9700;&#x8981;&#x91C7;&#x7528; Semantic &#x7248;&#x672C;&#x547D;&#x540D;&#x6CD5;&#xFF0C;&#x4E5F;&#x5C31;&#x662F; <code>vMAJOR.MINOR.PATCH-suffix</code> &#xFF0C;&#x7EA6;&#x5B9A;&#x5982;&#x4E0B;&#xFF1A;</p>
-<ul>
-<li>&#x53EA;&#x6709;&#x4E0D;&#x5411;&#x540E;&#x517C;&#x5BB9;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8B6C;&#x5982;&#x4FEE;&#x6539;&#x4E86; API &#x65F6;&#xFF0C;&#x624D;&#x53EF;&#x4EE5;&#x53D8;&#x66F4;&#x4E3B;&#x7248;&#x672C;</li>
-<li>&#x540C;&#x4E00;&#x4E2A;&#x4E3B;&#x7248;&#x672C;&#x4E0B;&#x7684;&#x591A;&#x4E2A;&#x5B50;&#x7248;&#x672C;&#xFF0C;&#x5BF9;&#x7528;&#x6237;&#x800C;&#x8A00;&#x53EF;&#x4EE5;&#x65E0;&#x8111;&#x5347;&#x7EA7;&#xFF0C;&#x65E0;&#x9700;&#x91CD;&#x65B0;&#x9002;&#x914D;</li>
-<li>v0.x.x &#x7248;&#x672C;&#x662F;&#x6700;&#x81EA;&#x7531;&#x7684;&#x7248;&#x672C;&#xFF0C;v1.x.x &#x5F00;&#x59CB;&#x8981;&#x5BF9;&#x7528;&#x6237;&#x8D1F;&#x8D23;</li>
-</ul>
-<p>&#x4F7F;&#x7528; Semantic Versioning &#x5BF9; go module &#x6765;&#x8BF4;&#x5F88;&#x91CD;&#x8981;&#xFF0C; &#x56E0;&#x4E3A;&#x591A;&#x7248;&#x672C;&#x4F9D;&#x8D56;&#x5EFA;&#x7ACB;&#x5728;&#x8BE5;&#x57FA;&#x7840;&#x4E0A;&#xFF1A;</p>
-<ul>
-<li>&#x540C;&#x4E00;&#x5957;&#x4EE3;&#x7801;&#x7684;&#x591A;&#x4E2A;&#x4E3B;&#x7248;&#x672C;&#x901A;&#x8FC7; <code>/vX</code> &#x540E;&#x7F00;&#x533A;&#x5206;&#xFF08;&#x4ECE; v2 &#x5F00;&#x59CB;&#x9700;&#x8981;&#x540E;&#x7F00;&#xFF09;</li>
-<li>&#x4E0D;&#x652F;&#x6301;&#x540C;&#x65F6;&#x5F15;&#x7528;&#x540C;&#x4E00;&#x4E3B;&#x7248;&#x672C;&#x7684;&#x591A;&#x4E2A;&#x5C0F;&#x7248;&#x672C;</li>
-</ul>
-<p>&#x4F8B;&#x5982;&#xFF0C;&#x540C;&#x65F6;&#x4F9D;&#x8D56; rsc.io/quote &#x7684; v1 &#x548C; v3 &#x7248;&#x672C;&#xFF0C;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
-<pre><code class="lang-go"><span class="hljs-keyword">import</span> (
-    <span class="hljs-string">&quot;rsc.io/quote&quot;</span>
-    quoteV3 <span class="hljs-string">&quot;rsc.io/quote/v3&quot;</span>
-)
-</code></pre>
-<p>&#x8FD9;&#x79CD;&#x505A;&#x6CD5;&#x6709;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;&#x4E3A;&#x4E86;&#x5411;&#x540E;&#x517C;&#x5BB9;&#xFF0C;&#x5373;&#x517C;&#x5BB9;&#x6CA1;&#x6709;&#x4F7F;&#x7528; go module &#x7684;&#x9879;&#x76EE;&#xFF0C;&#x65B0;&#x7684;&#x4E3B;&#x7248;&#x672C;&#x9700;&#x8981;&#x72EC;&#x5360;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#x3002;</p>
-<p>&#x4F8B;&#x5982;&#x4E0A;&#x9762;&#x7684; <a href="https://github.com/rsc/quote" title="rsc.io/quote" target="_blank">rsc.io/quote</a>&#xFF1A;</p>
-<p><img src="../img/rscquote.png" alt="rsc.io/quote"></p>
-<p>v3 &#x4E0D;&#x4EC5;&#x662F;&#x771F;&#x5B9E;&#x5B58;&#x5728;&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x800C;&#x4E14;&#x662F;&#x4E00;&#x4E2A;&#x72EC;&#x7ACB;&#x7684; go module&#xFF0C;&#x5B83;&#x6709;&#x81EA;&#x5DF1;&#x7684; v3/go.mod&#xFF0C;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-go">module rsc.io/quote/v3
+<h1 id="&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x7684;&#x8986;&#x76D6;&#x7387;">&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x7684;&#x8986;&#x76D6;&#x7387;</h1>
+<p>Go &#x8BED;&#x8A00;&#x5728;&#x8BBE;&#x8BA1;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x8003;&#x8651;&#x5230;&#x5DE5;&#x7A0B;&#x5B9E;&#x8DF5;&#xFF0C;&#x878D;&#x5165;&#x4E86;&#x6CE8;&#x91CA;&#x6587;&#x6863;&#x3001;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x548C;&#x57FA;&#x51C6;&#x6D4B;&#x8BD5;&#x7B49;&#x8F6F;&#x4EF6;&#x5DE5;&#x7A0B;&#x4E2D;&#x7684;&#x6280;&#x672F;&#xFF0C;&#x4E0A;&#x4E00;&#x8282;&#x63D0;&#x5230;&#x7684;&#x4EE3;&#x7801;&#x7EC4;&#x7EC7;&#x65B9;&#x6CD5;&#x4E5F;&#x662F;&#x8F6F;&#x4EF6;&#x5DE5;&#x7A0B;&#x601D;&#x60F3;&#x7684;&#x4F53;&#x73B0;&#x3002;&#x5728;&#x8BED;&#x8A00;&#x5C42;&#x9762;&#x7EDF;&#x4E00;&#x5DE5;&#x5177;&#x548C;&#x65B9;&#x6CD5;&#xFF0C;&#x6781;&#x5927;&#x5730;&#x63D0;&#x9AD8;&#x4E86;&#x534F;&#x4F5C;&#x6548;&#x7387;&#x3002;</p>
+<p>&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x662F;&#x5DE5;&#x4F5C;&#x4EE3;&#x7801;&#x4E4B;&#x5916;&#x6700;&#x91CD;&#x8981;&#x7684;&#x5185;&#x5BB9;&#xFF0C; Go &#x8BED;&#x8A00;&#x5929;&#x751F;&#x652F;&#x6301;&#x3002;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x7684;&#x5199;&#x6CD5;&#x53EA;&#x8981;&#x770B;&#x51E0;&#x4E2A;&#x4F8B;&#x5B50;&#x5C31;&#x5B66;&#x4F1A;&#x4E86;&#xFF0C;&#x8B6C;&#x5982;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x6700;&#x7B80;&#x5355;&#x51FD;&#x6570;&#x529F;&#x80FD;&#x6D4B;&#x8BD5;&#x3002;</p>
+<p><strong>&#x76EE;&#x6807;&#x6587;&#x4EF6; funcs.go&#xFF1A;</strong></p>
+<pre><code class="lang-go"><span class="hljs-keyword">package</span> testcase
 
-require rsc.io/sampler v1<span class="hljs-number">.3</span><span class="hljs-number">.0</span>
+<span class="hljs-keyword">func</span> SumSlice(nums []<span class="hljs-keyword">int</span>) <span class="hljs-keyword">int</span> {
+    sum := <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> _,v := <span class="hljs-keyword">range</span> nums{
+        sum=sum+v
+    }
+    <span class="hljs-keyword">return</span> sum
+}
+
+<span class="hljs-keyword">func</span> SumArray(nums [<span class="hljs-number">10</span>]<span class="hljs-keyword">int</span>) <span class="hljs-keyword">int</span>{
+    sum := <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> _,v := <span class="hljs-keyword">range</span> nums{
+        sum=sum+v
+    }
+    <span class="hljs-keyword">return</span> sum
+}
 </code></pre>
-<p>&#x8FD9;&#x610F;&#x5473;&#x7740;&#x5F00;&#x53D1; v3 &#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9700;&#x8981;&#x628A;&#x4EE3;&#x7801;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#xFF0C;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;&#x4E2D;&#x4F1A;&#x6709;&#x5F88;&#x591A;&#x5197;&#x4F59;&#x4EE3;&#x7801;&#x3002;
-&#x5982;&#x679C;&#x5F15;&#x7528;&#x7AEF;&#x4F7F;&#x7528;&#x4E86; go module&#xFF0C;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x907F;&#x514D;&#x4F7F;&#x7528;&#x72EC;&#x7ACB;&#x7684;&#x4E3B;&#x7248;&#x672C;&#x76EE;&#x5F55;&#x5462;&#xFF1F;&#x4E0B;&#x9762;&#x901A;&#x8FC7;&#x8BD5;&#x9A8C;&#x9A8C;&#x8BC1;&#xFF0C;&#x540C;&#x65F6;&#x6F14;&#x793A; go module &#x7684;&#x5E38;&#x89C4;&#x7528;&#x6CD5;&#x3002;</p>
+<p><strong>&#x6D4B;&#x8BD5;&#x7528;&#x4F8B; funcs_test.go&#xFF1A;</strong></p>
+<pre><code class="lang-go"><span class="hljs-keyword">package</span> testcase
+
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">&quot;testing&quot;</span>
+)
+
+<span class="hljs-keyword">func</span> TestSumSlice(t *testing.T) {
+    arrays := []<span class="hljs-keyword">int</span>{<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>}
+    expect := <span class="hljs-number">45</span>
+    sum := SumSlice(arrays[:])
+    <span class="hljs-keyword">if</span> sum != expect {
+        t.Errorf(<span class="hljs-string">&quot;result is %d (should be %d)&quot;</span>, sum, expect)
+    }
+}
+</code></pre>
+<p>&#x7136;&#x540E;&#x91CD;&#x70B9;&#x6765;&#x4E86;&#xFF0C;&#x6267;&#x884C; go test &#x53EA;&#x4F1A;&#x544A;&#x77E5;&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x901A;&#x8FC7;&#xFF1A;</p>
+<pre><code class="lang-go">$ <span class="hljs-keyword">go</span> test       
+PASS
+ok      <span class="hljs-keyword">go</span>-code-example/testcase        <span class="hljs-number">0.806s</span>
+</code></pre>
+<p>&#x5F3A;&#x5927;&#x7684;&#x662F; -cover&#xFF0C;&#x53EF;&#x4EE5;&#x544A;&#x77E5;&#x6D4B;&#x8BD5;&#x8986;&#x76D6;&#x7387;&#xFF1A;</p>
+<pre><code class="lang-go">$ <span class="hljs-keyword">go</span> test -cover
+PASS
+coverage: <span class="hljs-number">50.0</span>% of statements
+ok      <span class="hljs-keyword">go</span>-code-example/testcase        <span class="hljs-number">0.306s</span>
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x7684;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x8986;&#x76D6;&#x7387;&#x53EA;&#x6709; 50%&#xFF0C;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x67E5;&#x770B;&#x6CA1;&#x6709;&#x8986;&#x76D6;&#x7684;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-go">$ <span class="hljs-keyword">go</span> test -coverprofile=coverage.out 
+$ <span class="hljs-keyword">go</span> tool cover -html=coverage.out
+</code></pre>
+<p><img src="../img/cover.png" alt="&#x6D4B;&#x8BD5;&#x8986;&#x76D6;&#x60C5;&#x51B5;"></p>
+<p>&#x6D4B;&#x8BD5;&#x8986;&#x76D6;&#x7387;&#x7684;&#x8BE6;&#x7EC6;&#x8BF4;&#x660E;&#x89C1; <a href="https://blog.golang.org/cover" title="The cover story" target="_blank">The cover story</a>&#x3002;</p>
 <h2 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h2>
 <ol>
 <li><a href="https://www.lijiaocn.com" title="&#x674E;&#x4F76;&#x6FB3;&#x7684;&#x535A;&#x5BA2;" target="_blank">&#x674E;&#x4F76;&#x6FB3;&#x7684;&#x535A;&#x5BA2;</a></li>
@@ -465,12 +474,12 @@ require rsc.io/sampler v1<span class="hljs-number">.3</span><span class="hljs-nu
 
             
                 
-                <a href="../" class="navigation navigation-prev " aria-label="Previous page: 手册说明（必读）">
+                <a href="create_mod.html" class="navigation navigation-prev " aria-label="Previous page: 多版本依赖功能验证">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="create_mod.html" class="navigation navigation-next " aria-label="Next page: 多版本依赖功能验证">
+                <a href="varcopy.html" class="navigation navigation-next " aria-label="Next page: 按值传递的开销很大">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -481,7 +490,7 @@ require rsc.io/sampler v1<span class="hljs-number">.3</span><span class="hljs-nu
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"代码要如何组织？","level":"1.2","depth":1,"next":{"title":"多版本依赖功能验证","level":"1.2.1","depth":2,"path":"article/create_mod.md","ref":"./article/create_mod.md","articles":[]},"previous":{"title":"手册说明（必读）","level":"1.1","depth":1,"path":"README.md","ref":"./README.md","articles":[]},"dir":"ltr"},"config":{"plugins":[{"name":"theme-lijiaocn","version":"git+https://github.com/lijiaocn/theme-lijiaocn.git"},"atoc","toggle-chapters","rss"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"atoc":{"addClass":true,"className":"atoc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"rss":{"categories":[],"title":"Go 语言深度入门手册","description":"Go 语言深度入门手册，帮你更好的理解 Go 语言，写出更高效、更规范、更不易出错的代码","author":"李佶澳","site_url":"https://www.lijiaocn.com/go-detail/","feed_url":"https://www.lijiaocn.com/go-detail/feed.xml"},"highlight":{},"theme-lijiaocn":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"lijiaocn@foxmail.com","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"language":"zh-hans","gitbook":">=3.0.0"},"file":{"path":"article/pkg.md","mtime":"2019-12-31T10:26:19.986Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-12-31T16:14:52.503Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"测试用例的覆盖率","level":"1.3","depth":1,"next":{"title":"按值传递的开销很大","level":"1.4","depth":1,"path":"article/varcopy.md","ref":"./article/varcopy.md","articles":[]},"previous":{"title":"多版本依赖功能验证","level":"1.2.1","depth":2,"path":"article/create_mod.md","ref":"./article/create_mod.md","articles":[]},"dir":"ltr"},"config":{"plugins":[{"name":"theme-lijiaocn","version":"git+https://github.com/lijiaocn/theme-lijiaocn.git"},"atoc","toggle-chapters","rss"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"atoc":{"addClass":true,"className":"atoc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"rss":{"categories":[],"title":"Go 语言深度入门手册","description":"Go 语言深度入门手册，帮你更好的理解 Go 语言，写出更高效、更规范、更不易出错的代码","author":"李佶澳","site_url":"https://www.lijiaocn.com/go-detail/","feed_url":"https://www.lijiaocn.com/go-detail/feed.xml"},"highlight":{},"theme-lijiaocn":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"lijiaocn@foxmail.com","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"language":"zh-hans","gitbook":">=3.0.0"},"file":{"path":"article/testcase.md","mtime":"2019-12-31T14:46:39.062Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-12-31T16:14:52.503Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
