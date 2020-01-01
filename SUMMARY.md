@@ -6,3 +6,5 @@
 * [测试用例的覆盖率](./article/testcase.md)
 * [按值传递的开销很大](./article/varcopy.md)
 * [并发与按值传递血案](./article/waitgroup.md)
+* [程序运行时跟踪调试](./article/debug.md)
+* [程序运行时状态查看](./article/pprof.md)
