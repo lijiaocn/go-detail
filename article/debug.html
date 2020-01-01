@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>按值传递的开销很大 · 小鸟笔记·李佶澳·影响一万人</title>
+        <title>程序运行时跟踪调试 · 小鸟笔记·李佶澳·影响一万人</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -66,10 +66,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="waitgroup.html" />
+    <link rel="next" href="pprof.html" />
     
     
-    <link rel="prev" href="testcase.html" />
+    <link rel="prev" href="waitgroup.html" />
     
 
     <link href="https://www.lijiaocn.com/go-detail/feed.xml" title="Go 语言深度入门手册" rel="alternate" type="application/rss+xml" />
@@ -236,7 +236,7 @@ var _hmt = _hmt || [];
             
         </li>
     
-        <li class="chapter active" data-level="1.4" data-path="varcopy.html">
+        <li class="chapter " data-level="1.4" data-path="varcopy.html">
             
                 <a href="varcopy.html">
             
@@ -262,7 +262,7 @@ var _hmt = _hmt || [];
             
         </li>
     
-        <li class="chapter " data-level="1.6" data-path="debug.html">
+        <li class="chapter active" data-level="1.6" data-path="debug.html">
             
                 <a href="debug.html">
             
@@ -334,7 +334,7 @@ var _hmt = _hmt || [];
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >按值传递的开销很大</a>
+        <a href=".." >程序运行时跟踪调试</a>
     </h1>
 </div>
 
@@ -387,75 +387,94 @@ var _hmt = _hmt || [];
 
                                 <!-- toc -->
 <ul>
-<li><a href="#go-&#x8BED;&#x8A00;&#x6309;&#x503C;&#x4F20;&#x9012;&#x7684;&#x5F00;&#x9500;&#x5F88;&#x5927;">Go &#x8BED;&#x8A00;&#x6309;&#x503C;&#x4F20;&#x9012;&#x7684;&#x5F00;&#x9500;&#x5F88;&#x5927;</a><ul>
-<li><a href="#&#x6570;&#x7EC4;&#x4E5F;&#x6309;&#x503C;&#x4F20;&#x9012;">&#x6570;&#x7EC4;&#x4E5F;&#x6309;&#x503C;&#x4F20;&#x9012;</a></li>
+<li><a href="#go-&#x8BED;&#x8A00;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x65F6;&#x8DDF;&#x8E2A;&#x8C03;&#x8BD5;">Go &#x8BED;&#x8A00;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x65F6;&#x8DDF;&#x8E2A;&#x8C03;&#x8BD5;</a><ul>
+<li><a href="#&#x76EE;&#x6807;&#x7A0B;&#x5E8F;">&#x76EE;&#x6807;&#x7A0B;&#x5E8F;</a></li>
+<li><a href="#dlv-&#x8C03;&#x8BD5;">dlv &#x8C03;&#x8BD5;</a></li>
 <li><a href="#&#x53C2;&#x8003;">&#x53C2;&#x8003;</a></li>
 </ul>
 </li>
 </ul>
 <!-- tocstop -->
-<h1 id="go-&#x8BED;&#x8A00;&#x6309;&#x503C;&#x4F20;&#x9012;&#x7684;&#x5F00;&#x9500;&#x5F88;&#x5927;">Go &#x8BED;&#x8A00;&#x6309;&#x503C;&#x4F20;&#x9012;&#x7684;&#x5F00;&#x9500;&#x5F88;&#x5927;</h1>
-<p>Go &#x8BED;&#x8A00;&#x6240;&#x6709;&#x7684;&#x53C2;&#x6570;&#x90FD;&#x662F;&#x6309;&#x503C;&#x4F20;&#x9012;&#xFF0C;Go &#x8BED;&#x8A00;&#x4E2D;&#x6240;&#x6709;&#x7684;&#x53D8;&#x91CF;&#x90FD;&#x662F;&#x503C;&#xFF0C;&#x7279;&#x522B;&#x662F;&#x6570;&#x7EC4;&#x4E5F;&#x662F;&#x503C;&#x3002;</p>
-<h2 id="&#x6570;&#x7EC4;&#x4E5F;&#x6309;&#x503C;&#x4F20;&#x9012;">&#x6570;&#x7EC4;&#x4E5F;&#x6309;&#x503C;&#x4F20;&#x9012;</h2>
-<p>&#x5982;&#x679C;&#x628A;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x6570;&#x7EC4;&#x4F1A;&#x88AB;&#x5B8C;&#x6574;&#x7684;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#xFF0C;&#x6267;&#x884C;&#x6548;&#x7387;&#x4F1A;&#x4E25;&#x91CD;&#x964D;&#x4F4E;&#x3002;</p>
-<p>&#x4EE5;&#x524D;&#x9762;&#x7528;&#x5230;&#x7684; funcs.go &#x4E3A;&#x4F8B;&#xFF1A;</p>
-<pre><code class="lang-go"><span class="hljs-keyword">package</span> testcase
-
-<span class="hljs-keyword">func</span> SumSlice(nums []<span class="hljs-keyword">int</span>) <span class="hljs-keyword">int</span> {
-    sum := <span class="hljs-number">0</span>
-    <span class="hljs-keyword">for</span> _,v := <span class="hljs-keyword">range</span> nums{
-        sum=sum+v
-    }
-    <span class="hljs-keyword">return</span> sum
-}
-
-<span class="hljs-keyword">func</span> SumArray(nums [<span class="hljs-number">10</span>]<span class="hljs-keyword">int</span>) <span class="hljs-keyword">int</span>{
-    sum := <span class="hljs-number">0</span>
-    <span class="hljs-keyword">for</span> _,v := <span class="hljs-keyword">range</span> nums{
-        sum=sum+v
-    }
-    <span class="hljs-keyword">return</span> sum
-}
+<h1 id="go-&#x8BED;&#x8A00;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x65F6;&#x8DDF;&#x8E2A;&#x8C03;&#x8BD5;">Go &#x8BED;&#x8A00;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x65F6;&#x8DDF;&#x8E2A;&#x8C03;&#x8BD5;</h1>
+<p><a href="https://github.com/go-delve/delve" title="delve" target="_blank">delve</a> &#x662F;&#x73B0;&#x9636;&#x6BB5;&#x6700;&#x597D;&#x7528;&#x7684;&#x8DDF;&#x8E2A;&#x8C03;&#x8BD5;&#x5DE5;&#x5177;&#xFF0C;&#x652F;&#x6301; Linux &#x548C; macOS&#xFF0C;&#x662F; GoLand &#x4F7F;&#x7528;&#x7684;&#x8C03;&#x8BD5;&#x5DE5;&#x5177;&#x3002;</p>
+<p>&#xFF08;2020-01-01 19:27:25&#xFF09;</p>
+<p>macOS &#x4E0A;&#x5B89;&#x88C5; delve&#xFF1A;</p>
+<pre><code class="lang-sh">$ xcode-select --install  <span class="hljs-comment"># &#x5982;&#x679C;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x4E86; xcode &#x5DE5;&#x5177;&#xFF0C;&#x8FD9;&#x4E00;&#x6B65;&#x4E0D;&#x9700;&#x8981;</span>
+$ go get -u github.com/go-delve/delve/cmd/dlv
 </code></pre>
-<p>&#x5199;&#x4E24;&#x4E2A;&#x57FA;&#x51C6;&#x6D4B;&#x8BD5;&#x51FD;&#x6570;&#xFF1A;</p>
-<pre><code class="lang-go"><span class="hljs-keyword">package</span> testcase
+<pre><code class="lang-sh">Usage:
+  dlv [<span class="hljs-built_in">command</span>]
+
+Available Commands:
+  attach      Attach to running process and begin debugging.
+  connect     Connect to a headless debug server.
+  core        Examine a core dump.
+  debug       Compile and begin debugging main package <span class="hljs-keyword">in</span> current directory, or the package specified.
+  <span class="hljs-built_in">exec</span>        Execute a precompiled binary, and begin a debug session.
+  <span class="hljs-built_in">help</span>        Help about any <span class="hljs-built_in">command</span>
+  run         Deprecated command. Use <span class="hljs-string">&apos;debug&apos;</span> instead.
+  <span class="hljs-built_in">test</span>        Compile <span class="hljs-built_in">test</span> binary and begin debugging program.
+  trace       Compile and begin tracing program.
+  version     Prints version.
+</code></pre>
+<h2 id="&#x76EE;&#x6807;&#x7A0B;&#x5E8F;">&#x76EE;&#x6807;&#x7A0B;&#x5E8F;</h2>
+<p>&#x5199;&#x4E00;&#x4E2A;&#x8D85;&#x7EA7;&#x7B80;&#x5355;&#x7684;&#x5C0F;&#x7A0B;&#x5E8F;&#x4F5C;&#x4E3A;&#x8DDF;&#x8E2A;&#x8C03;&#x8BD5;&#x76EE;&#x6807;&#xFF1A;</p>
+<pre><code class="lang-go"><span class="hljs-keyword">package</span> main
 
 <span class="hljs-keyword">import</span> (
-    <span class="hljs-string">&quot;testing&quot;</span>
+    <span class="hljs-string">&quot;fmt&quot;</span>
+    <span class="hljs-string">&quot;time&quot;</span>
 )
 
-<span class="hljs-keyword">func</span> TestSumSlice(t *testing.T) {
-    arrays := [<span class="hljs-number">10</span>]<span class="hljs-keyword">int</span>{<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>}
-    expect := <span class="hljs-number">45</span>
-    sum := SumSlice(arrays[:])
-    <span class="hljs-keyword">if</span> sum != expect {
-        t.Errorf(<span class="hljs-string">&quot;result is %d (should be %d)&quot;</span>, sum, expect)
+<span class="hljs-keyword">func</span> Write(num <span class="hljs-keyword">int</span>, c <span class="hljs-keyword">chan</span> <span class="hljs-keyword">int</span>) {
+    <span class="hljs-keyword">for</span> {
+        c &lt;- num
     }
 }
 
-<span class="hljs-keyword">func</span> BenchmarkSumSlice(b *testing.B) {
-    arrays := [<span class="hljs-number">10</span>]<span class="hljs-keyword">int</span>{<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>}
-    s := arrays[:]
-    <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; b.N; i++ {
-        SumSlice(s)
-    }
-}
-
-<span class="hljs-keyword">func</span> BenchmarkSumArray(b *testing.B) {
-    arrays := [<span class="hljs-number">10</span>]<span class="hljs-keyword">int</span>{<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>}
-    <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; b.N; i++ {
-        SumArray(arrays)
+<span class="hljs-keyword">func</span> main() {
+    c := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-keyword">int</span>)
+    <span class="hljs-keyword">go</span> Write(<span class="hljs-number">10</span>, c)
+    <span class="hljs-keyword">go</span> Write(<span class="hljs-number">20</span>, c)
+    <span class="hljs-keyword">for</span> {
+        <span class="hljs-keyword">select</span> {
+        <span class="hljs-keyword">case</span> v := &lt;-c:
+            fmt.Printf(<span class="hljs-string">&quot;receive %d\n&quot;</span>, v)
+            time.Sleep(<span class="hljs-number">2</span> * time.Second)
+        }
     }
 }
 </code></pre>
-<p>&#x57FA;&#x51C6;&#x6D4B;&#x8BD5;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-sh">goos: darwin
-goarch: amd64
-pkg: go-code-example/testcase
-BenchmarkSumSlice-4       161025976             6.67 ns/op
-BenchmarkSumArray-4       90106534            13.9 ns/op
+<h2 id="dlv-&#x8C03;&#x8BD5;">dlv &#x8C03;&#x8BD5;</h2>
+<p>&#x7528; dlv attach &#x6B63;&#x5728;&#x8FD0;&#x884C;&#x4E2D;&#x7684;&#x8FDB;&#x7A0B;&#xFF08;attach &#x540E;&#x8FDB;&#x7A0B;&#x4F1A;&#x88AB;&#x63A5;&#x7BA1;&#xFF0C;&#x6682;&#x505C;&#x8FD0;&#x884C;&#xFF09;&#xFF1A;</p>
+<pre><code class="lang-sh">$ dlv attach  7282
+Type <span class="hljs-string">&apos;help&apos;</span> <span class="hljs-keyword">for</span> list of commands.
+(dlv)
 </code></pre>
-<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5728;&#x6570;&#x7EC4;&#x957F;&#x5EA6;&#x53EA;&#x6709; 10 &#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C; SumSlice &#x548C; SumArray &#x7684;&#x6267;&#x884C;&#x6548;&#x7387;&#x5C31;&#x5DF2;&#x7ECF;&#x76F8;&#x5DEE;&#x60AC;&#x6B8A;&#x3002;</p>
+<p>help &#x67E5;&#x770B; dlv &#x652F;&#x6301;&#x7684;&#x8C03;&#x8BD5;&#x547D;&#x4EE4;&#xFF1A;</p>
+<p><img src="../img/dlv.png" alt="delve&#x547D;&#x4EE4;-help"></p>
+<p>grs &#x663E;&#x793A;&#x6240;&#x6709;&#x7684; goroutine&#xFF1A;</p>
+<p><img src="../img/grs.png" alt="delve&#x547D;&#x4EE4;-grs"></p>
+<p>gr &#x663E;&#x793A;&#x5F53;&#x524D;&#x7684; goroutine &#x6216;&#x8005;&#x5207;&#x6362;&#x5230;&#x6307;&#x5B9A;&#x7684; goroutine&#xFF1A;</p>
+<p><img src="../img/gr.png" alt="delve&#x547D;&#x4EE4;-gr"></p>
+<p>&#x6253;&#x65AD;&#x70B9;&#xFF1A;</p>
+<p><img src="../img/break.png" alt="delve&#x547D;&#x4EE4;-break"></p>
+<p>&#x5230;&#x65AD;&#x70B9;&#x4F4D;&#x7F6E;&#x540E;&#xFF0C;&#x7528; gr &#x6253;&#x5370;&#x5F53;&#x524D;&#x7684; goroutine&#xFF0C;&#x4F1A;&#x53D1;&#x73B0;&#x5728; 18 &#x548C; 19 &#x4E24;&#x4E2A; goroutine &#x4E4B;&#x95F4;&#x5207;&#x6362;&#xFF1A;</p>
+<pre><code class="lang-sh">(dlv) c
+......
+(dlv) gr
+Thread 120198 at /Users/lijiao/Work/go-code-example/debug/debug.go:10
+Goroutine 19:
+......
+(dlv) c
+......
+(dlv) gr
+Thread 120196 at /Users/lijiao/Work/go-code-example/debug/debug.go:10
+Goroutine 18:
+......
+</code></pre>
+<p>&#x5355;&#x6B65;&#x6267;&#x884C; <code>n</code>&#xFF0C;&#x8FDB;&#x5165;&#x8C03;&#x7528;&#x51FD;&#x6570; <code>s</code>&#xFF0C;&#x67E5;&#x770B;&#x8C03;&#x7528;&#x6808; <code>bt</code>&#xFF0C;&#x5207;&#x6362;&#x8C03;&#x7528;&#x6808;&#x4F4D;&#x7F6E; <code>frame POS</code> &#x7B49;&#x6307;&#x4EE4;&#x4E0E; gdb &#x4E2D;&#x7684;&#x540C;&#x540D;&#x6307;&#x4EE4;&#x7528;&#x6CD5;&#x76F8;&#x4F3C;&#x3002;&#x5176;&#x5B83;&#x6307;&#x4EE4;&#x8FD9;&#x91CC;&#x4E0D;&#x7F57;&#x5217;&#x4E86;&#xFF0C;dlv &#x7684; help &#x4E2D;&#x90FD;&#x6709;&#x3002;</p>
+<p>Go 1.11 &#x548C; Go 1.12 &#x6301;&#x7EED;&#x4F18;&#x5316;&#x4E86; Go &#x8BED;&#x8A00;&#x7A0B;&#x5E8F;&#x7684;&#x8C03;&#x8BD5;&#x4F53;&#x9A8C;&#xFF0C;&#x8BE6;&#x60C5;&#x89C1;&#xFF1A;<a href="https://www.lijiaocn.com/%E7%BC%96%E7%A8%8B/2019/12/23/go-blog-10-years.html#%E8%B0%83%E8%AF%95%E8%B0%83%E4%BC%98" title="Go 1.12 &#x8C03;&#x8BD5;&#x4F18;&#x5316;" target="_blank">Go 1.12 &#x8C03;&#x8BD5;&#x4F18;&#x5316;</a>&#x3002;</p>
 <h2 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h2>
 <ol>
 <li><a href="https://www.lijiaocn.com" title="&#x674E;&#x4F76;&#x6FB3;&#x7684;&#x535A;&#x5BA2;" target="_blank">&#x674E;&#x4F76;&#x6FB3;&#x7684;&#x535A;&#x5BA2;</a></li>
@@ -521,12 +540,12 @@ BenchmarkSumArray-4       90106534            13.9 ns/op
 
             
                 
-                <a href="testcase.html" class="navigation navigation-prev " aria-label="Previous page: 测试用例的覆盖率">
+                <a href="waitgroup.html" class="navigation navigation-prev " aria-label="Previous page: 并发与按值传递血案">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="waitgroup.html" class="navigation navigation-next " aria-label="Next page: 并发与按值传递血案">
+                <a href="pprof.html" class="navigation navigation-next " aria-label="Next page: 程序运行时状态查看">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -537,7 +556,7 @@ BenchmarkSumArray-4       90106534            13.9 ns/op
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"按值传递的开销很大","level":"1.4","depth":1,"next":{"title":"并发与按值传递血案","level":"1.5","depth":1,"path":"article/waitgroup.md","ref":"./article/waitgroup.md","articles":[]},"previous":{"title":"测试用例的覆盖率","level":"1.3","depth":1,"path":"article/testcase.md","ref":"./article/testcase.md","articles":[]},"dir":"ltr"},"config":{"plugins":[{"name":"theme-lijiaocn","version":"git+https://github.com/lijiaocn/theme-lijiaocn.git"},"atoc","toggle-chapters","rss"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"atoc":{"addClass":true,"className":"atoc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"rss":{"categories":[],"title":"Go 语言深度入门手册","description":"Go 语言深度入门手册，帮你更好的理解 Go 语言，写出更高效、更规范、更不易出错的代码","author":"李佶澳","site_url":"https://www.lijiaocn.com/go-detail/","feed_url":"https://www.lijiaocn.com/go-detail/feed.xml"},"highlight":{},"theme-lijiaocn":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"lijiaocn@foxmail.com","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"language":"zh-hans","gitbook":">=3.0.0"},"file":{"path":"article/varcopy.md","mtime":"2020-01-01T08:02:31.204Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-01T12:48:34.264Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"程序运行时跟踪调试","level":"1.6","depth":1,"next":{"title":"程序运行时状态查看","level":"1.7","depth":1,"path":"article/pprof.md","ref":"./article/pprof.md","articles":[]},"previous":{"title":"并发与按值传递血案","level":"1.5","depth":1,"path":"article/waitgroup.md","ref":"./article/waitgroup.md","articles":[]},"dir":"ltr"},"config":{"plugins":[{"name":"theme-lijiaocn","version":"git+https://github.com/lijiaocn/theme-lijiaocn.git"},"atoc","toggle-chapters","rss"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"atoc":{"addClass":true,"className":"atoc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"rss":{"categories":[],"title":"Go 语言深度入门手册","description":"Go 语言深度入门手册，帮你更好的理解 Go 语言，写出更高效、更规范、更不易出错的代码","author":"李佶澳","site_url":"https://www.lijiaocn.com/go-detail/","feed_url":"https://www.lijiaocn.com/go-detail/feed.xml"},"highlight":{},"theme-lijiaocn":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"lijiaocn@foxmail.com","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"language":"zh-hans","gitbook":">=3.0.0"},"file":{"path":"article/debug.md","mtime":"2020-01-01T11:30:13.179Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-01T12:48:34.264Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

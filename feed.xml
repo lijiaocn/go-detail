@@ -4,7 +4,7 @@
         <description><![CDATA[Go 语言深度入门手册，帮你更好的理解 Go 语言，写出更高效、更规范、更不易出错的代码]]></description>
         <link>https://www.lijiaocn.com/go-detail/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Wed, 01 Jan 2020 08:02:15 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 01 Jan 2020 12:48:38 GMT</lastBuildDate>
         <atom:link href="https://www.lijiaocn.com/go-detail/feed.xml" rel="self" type="application/rss+xml"/>
         <author><![CDATA[李佶澳]]></author>
         <item>
@@ -47,6 +47,20 @@
             <description><![CDATA[前段时间出去面试的时候，被一道题难住了，问下面这段代码的运行输出是什么：]]></description>
             <link>https://www.lijiaocn.com/go-detail/article/waitgroup.html</link>
             <guid isPermaLink="true">https://www.lijiaocn.com/go-detail/article/waitgroup.html</guid>
+            <dc:creator><![CDATA[李佶澳]]></dc:creator>
+        </item>
+        <item>
+            <title><![CDATA[Go 语言程序运行时跟踪调试]]></title>
+            <description><![CDATA[delve 是现阶段最好用的跟踪调试工具，支持 Linux 和 macOS，是 GoLand 使用的调试工具。]]></description>
+            <link>https://www.lijiaocn.com/go-detail/article/debug.html</link>
+            <guid isPermaLink="true">https://www.lijiaocn.com/go-detail/article/debug.html</guid>
+            <dc:creator><![CDATA[李佶澳]]></dc:creator>
+        </item>
+        <item>
+            <title><![CDATA[Go 程序运行时状态查看]]></title>
+            <description><![CDATA[上一节用 dlv 调试运行中的 Go 语言程序，dlv 会打断进程的运行，在开发测试时可以用。]]></description>
+            <link>https://www.lijiaocn.com/go-detail/article/pprof.html</link>
+            <guid isPermaLink="true">https://www.lijiaocn.com/go-detail/article/pprof.html</guid>
             <dc:creator><![CDATA[李佶澳]]></dc:creator>
         </item>
     </channel>
