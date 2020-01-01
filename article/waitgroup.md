@@ -209,7 +209,7 @@ func wg6() {
 
 结论是可以，而且这种情况下必须使用指针，如果不用指针是有问题的。
 
-如果不用指针，goroutine 中的 wg.Done() 是无效的，因为 goroutine 中的 wg 是一个副本，结果会是这样的：
+如果不用指针，goroutine 中的 wg.Done() 是无效的，因为 goroutine 中的 wg 是一个副本，结果会是这样：
 
 ```sh
 1
