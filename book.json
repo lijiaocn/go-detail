@@ -18,8 +18,8 @@
 			"className": "atoc"
 		},
 		"rss": {
-			"title": "Go 语言深度入门手册",
-			"description": "Go 语言深度入门手册，帮你更好的理解 Go 语言，写出更高效、更规范、更不易出错的代码",
+			"title": "Go 语言实用编程",
+			"description": "Go 语言使用编程手册，帮你更好的理解 Go 语言，写出更高效、更规范、更不易出错的代码",
 			"author": "李佶澳",
 			"site_url": "https://www.lijiaocn.com/go-detail/",
 			"feed_url": "https://www.lijiaocn.com/go-detail/feed.xml"
