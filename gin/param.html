@@ -1,0 +1,873 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>参数读取 · 小鸟笔记·李佶澳·影响一万人</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="lijiaocn@foxmail.com">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-atoc/atoc.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-toggle-chapters/toggle.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="router.html" />
+    
+
+    <link href="https://www.lijiaocn.com/go-detail/feed.xml" title="Go 语言实用编程" rel="alternate" type="application/rss+xml" />
+
+        
+<!--Google ads -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8176866190626448",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-105389858-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-105389858-1');
+</script>
+
+<!--百度统计-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8f59ea10145df28da8932c8743ec1d60";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!--百度收录-->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                
+<div style="text-align:center">
+    <h2><a href="https://www.lijiaocn.com/note/" style="color:#afa790">小鸟笔记（主页）</a></h2>
+    <p style="font-weight:bold"><a style="color:lightgray;" href="https://www.lijiaocn.com">www.lijiaocn.com，影响一万人</a></p>
+</div>
+
+<div style="text-align:center">
+    <a href="/prog/" style="color:#afa790;font-weight:bold">编程</a>&nbsp;
+    <a href="/soft/" style="color:#afa790;font-weight:bold">软件</a>&nbsp;
+    <a href="/book/" style="color:#afa790;font-weight:bold">读书</a>&nbsp;
+    <a href="/note/" style="color:#afa790;font-weight:bold">其它</a>
+</div>
+<div>
+<br>
+<ul class="summary"><li>
+<a style="color:red" target="_blank" href="https://study.163.com/provider/400000000376006/course.htm?share=2&shareId=400000000376006">云课堂·视频讲解（点我了解）</a>
+</li></ul>
+</div>
+
+<!--div style="text-align:center">
+< 250x250 >
+<ins class="adsbygoogle"
+     style="display:inline-block;width:250px;height:250px"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="9490087185"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div-->
+
+
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Go 实用编程说明
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">深入阅读</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../article/pkg.html">
+            
+                <a href="../article/pkg.html">
+            
+                    
+                    代码要如何组织?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../article/create_mod.html">
+            
+                <a href="../article/create_mod.html">
+            
+                    
+                    多版本依赖功能验证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../article/testcase.html">
+            
+                <a href="../article/testcase.html">
+            
+                    
+                    测试用例的覆盖率
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../article/varcopy.html">
+            
+                <a href="../article/varcopy.html">
+            
+                    
+                    按值传递的开销很大
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../article/waitgroup.html">
+            
+                <a href="../article/waitgroup.html">
+            
+                    
+                    并发与按值传递血案
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../article/debug.html">
+            
+                <a href="../article/debug.html">
+            
+                    
+                    程序运行时跟踪调试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../article/pprof.html">
+            
+                <a href="../article/pprof.html">
+            
+                    
+                    程序运行时状态查看
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../article/unmarshal.html">
+            
+                <a href="../article/unmarshal.html">
+            
+                    
+                    大量反序列化用指针
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Web 框架 gin</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    Gin 的原理与学习资料
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="quickstart.html">
+            
+                <a href="quickstart.html">
+            
+                    
+                    快速开始
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="router.html">
+            
+                <a href="router.html">
+            
+                    
+                    路由管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.4" data-path="param.html">
+            
+                <a href="param.html">
+            
+                    
+                    参数读取
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" >
+            
+                <span>
+            
+                    
+                    响应数据
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" >
+            
+                <span>
+            
+                    
+                    日志管理
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" >
+            
+                <span>
+            
+                    
+                    配置读取
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" >
+            
+                <span>
+            
+                    
+                    静态文件
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.lijiaocn.com" target="blank" class="gitbook-link">
+            www.lijiaocn.com 提供
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+                
+<br>
+<!--div style="text-align:center"-->
+<!-- Summary_Bottom -->
+<!--ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="2156601384"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div-->
+
+
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >参数读取</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                
+<!-- Page_Top -->
+<!--div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="5702052586"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br>
+</div-->
+
+<div style="text-align:center">
+<!-- 小鸟笔记-375*90 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:375px;height:90px"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="4394865767"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!-- 小鸟笔记-375*90-2 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:375px;height:90px"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="7071988236"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+
+                                <!-- toc -->
+<ul>
+<li><a href="#gin-&#x7684;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x83B7;&#x53D6;">Gin &#x7684;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x83B7;&#x53D6;</a><ul>
+<li><a href="#url-query-&#x53C2;&#x6570;">URL query &#x53C2;&#x6570;</a></li>
+<li><a href="#http-header">Http Header</a></li>
+<li><a href="#uri-&#x8DEF;&#x5F84;&#x53C2;&#x6570;">URI &#x8DEF;&#x5F84;&#x53C2;&#x6570;</a></li>
+<li><a href="#post&#xFF1A;form-&#x8868;&#x5355;&#x6570;&#x636E;">POST&#xFF1A;form &#x8868;&#x5355;&#x6570;&#x636E;</a></li>
+<li><a href="#post&#xFF1A;jsonxmlyaml">POST&#xFF1A;json/xml/yaml</a></li>
+<li><a href="#post-&#x540C;&#x65F6;&#x652F;&#x6301;&#x591A;&#x79CD;&#x683C;&#x5F0F;">POST: &#x540C;&#x65F6;&#x652F;&#x6301;&#x591A;&#x79CD;&#x683C;&#x5F0F;</a></li>
+<li><a href="#&#x53C2;&#x8003;">&#x53C2;&#x8003;</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h1 id="gin-&#x7684;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x83B7;&#x53D6;">Gin &#x7684;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x83B7;&#x53D6;</h1>
+<p>http &#x7684;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x901A;&#x5E38;&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x96C6;&#x4E2D;&#x65B9;&#x5F0F;&#x4F20;&#x5165;&#x3002;</p>
+<ul>
+<li>&#x9644;&#x52A0;&#x5728; url &#x540E;&#x9762;&#x7684;&#xFF08;&#x7528; ? &#x5206;&#x9694;&#xFF09;&#x7684; query &#x53C2;&#x6570;&#xFF0C;&#x8B6C;&#x5982;&#x4E0B;&#x9762;&#x7684; name &#x548C; age&#xFF1A;</li>
+</ul>
+<pre><code class="lang-sh">127.0.0.1:8080/query?name=XX&amp;age=11
+</code></pre>
+<ul>
+<li>URI &#x4E2D;&#x7279;&#x5B9A;&#x4F4D;&#x7F6E;&#x7684;&#x5B57;&#x7B26;&#x8BA4;&#x505A;&#x4F20;&#x5165;&#x53C2;&#x6570;&#xFF1A;</li>
+</ul>
+<p>&#x5047;&#x8BBE;&#x8DEF;&#x5F84;&#x53C2;&#x6570;&#x5B9A;&#x4E49;&#x4E3A;&#xFF1A;/user/NAME/ACTION</p>
+<p>127.0.0.1:8080/user/xiaoming/run &#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;&#x5C31;&#x662F; NAME=xiaoming&#xFF0C;ACTION=run</p>
+<ul>
+<li><p>&#x5728; HTTP Header &#x4E2D;&#x8BBE;&#x7F6E;&#x7684;&#x53C2;&#x6570;</p>
+</li>
+<li><p>&#x901A;&#x8FC7; post &#x63D0;&#x4EA4;&#x7684;&#x3001;&#x4F4D;&#x4E8E; http &#x8BF7;&#x6C42; body &#x4E2D;&#x7684;&#x6570;&#x636E;</p>
+</li>
+</ul>
+<p>&#x4EE5;&#x4E0A;&#x53C2;&#x6570;&#x4EE5;&#x53CA;&#x5176;&#x5B83;&#x6240;&#x6709;&#x7684;&#x8BF7;&#x6C42;&#x4FE1;&#x606F;&#xFF0C;&#x90FD;&#x4F20;&#x5165;&#x7684; *gin.Context &#x83B7;&#x53D6;&#x3002;</p>
+<h2 id="url-query-&#x53C2;&#x6570;">URL query &#x53C2;&#x6570;</h2>
+<p>URL &#x7684;&#x591A;&#x4E2A; query &#x53C2;&#x6570;&#x7528; &amp; &#x95F4;&#x9694;&#xFF0C;&#x7528; c.QueryXX &#x65B9;&#x6CD5;&#x8BFB;&#x53D6;&#xFF1A;</p>
+<pre><code class="lang-go"><span class="hljs-comment">//&#x5339;&#x914D;&#xFF1A;127.0.0.1:8080/query?name=xiaoming&amp;age=11</span>
+<span class="hljs-keyword">func</span> query(c *gin.Context) {
+    name := c.DefaultQuery(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;Guest&quot;</span>)
+    age := c.Query(<span class="hljs-string">&quot;age&quot;</span>)
+
+    c.String(http.StatusOK, <span class="hljs-string">&quot;%s is %s years\n&quot;</span>, name, age)
+}
+</code></pre>
+<p>&#x540C;&#x540D;&#x7684;&#x53C2;&#x6570;&#x88AB;&#x8BA4;&#x4E3A;&#x662F;&#x6570;&#x7EC4;&#xFF1A;</p>
+<pre><code class="lang-go"><span class="hljs-comment">//&#x5339;&#x914D;&#xFF1A;&quot;127.0.0.1:8080/arr?ids=A&amp;ids=B&quot;</span>
+<span class="hljs-keyword">func</span> queryArray(c *gin.Context) {
+    ids := c.QueryArray(<span class="hljs-string">&quot;ids&quot;</span>)
+    c.JSON(http.StatusOK, gin.H{
+        <span class="hljs-string">&quot;ids&quot;</span>: ids,
+    })
+}
+</code></pre>
+<p>Map &#x53C2;&#x6570;&#x7684;&#x4F20;&#x9012;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-go"><span class="hljs-comment">//&#x5339;&#x914D;&#xFF1A;&quot;127.0.0.1:8080/map?ids[a]=1234&amp;ids[b]=hello&quot;</span>
+<span class="hljs-keyword">func</span> queryMap(c *gin.Context) {
+    ids := c.QueryMap(<span class="hljs-string">&quot;ids&quot;</span>)
+    c.JSON(http.StatusOK, gin.H{
+        <span class="hljs-string">&quot;ids&quot;</span>: ids,
+    })
+}
+</code></pre>
+<p>&#x9664;&#x4E86;&#x4E0A;&#x9762;&#x7684;&#x53C2;&#x6570;&#x8BFB;&#x53D6;&#x65B9;&#x6CD5;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; c.ShouldBindQuery &#x76F4;&#x63A5;&#x5C06;&#x53C2;&#x6570;&#x89E3;&#x6790;&#x5230;&#x53D8;&#x91CF;&#x4E2D;&#xFF1A;</p>
+<pre><code class="lang-go"><span class="hljs-keyword">type</span> UserInfo <span class="hljs-keyword">struct</span> {
+    Name     <span class="hljs-keyword">string</span>            <span class="hljs-string">`form:&quot;name&quot;`</span>
+    Age      <span class="hljs-keyword">int</span>               <span class="hljs-string">`form:&quot;age&quot;`</span>
+    Message  []<span class="hljs-keyword">string</span>          <span class="hljs-string">`form:&quot;message&quot;`</span>
+    MoreInfo <span class="hljs-keyword">map</span>[<span class="hljs-keyword">string</span>]<span class="hljs-keyword">string</span> <span class="hljs-string">`form:&quot;moreinfo&quot;`</span>
+}
+
+<span class="hljs-keyword">func</span> queryBind(c *gin.Context) {
+    <span class="hljs-keyword">var</span> userInfo UserInfo
+    c.BindQuery(&amp;userInfo)
+    <span class="hljs-comment">//gin 1.5 &#x7684; BindQuery &#x4F3C;&#x4E4E;&#x4E0D;&#x652F;&#x6301; map&#xFF0C;&#x5355;&#x72EC;&#x83B7;&#x53D6;</span>
+    userInfo.MoreInfo = c.QueryMap(<span class="hljs-string">&quot;moreinfo&quot;</span>)
+    c.JSON(http.StatusOK, userInfo)
+}
+</code></pre>
+<h2 id="http-header">Http Header</h2>
+<p>&#x7528; c.GetHeader() &#x83B7;&#x53D6;&#xFF1A;</p>
+<pre><code class="lang-go"><span class="hljs-keyword">func</span> header(c *gin.Context) {
+    token := c.GetHeader(<span class="hljs-string">&quot;TOKEN&quot;</span>)
+    c.JSON(http.StatusOK, gin.H{
+        <span class="hljs-string">&quot;TOKEN&quot;</span>: token,
+    })
+}
+</code></pre>
+<p>&#x7528; c.BindHeader &#x76F4;&#x63A5;&#x89E3;&#x6790;&#x5230;&#x53D8;&#x91CF;&#x4E2D;&#xFF1A;</p>
+<pre><code class="lang-go"><span class="hljs-keyword">type</span> Token <span class="hljs-keyword">struct</span> {
+    Token <span class="hljs-keyword">string</span> <span class="hljs-string">`header:&quot;token&quot;`</span>
+}
+
+<span class="hljs-keyword">func</span> headerBind(c *gin.Context) {
+    <span class="hljs-keyword">var</span> token Token
+    c.BindHeader(&amp;token)
+    c.JSON(http.StatusOK, token)
+}
+</code></pre>
+<h2 id="uri-&#x8DEF;&#x5F84;&#x53C2;&#x6570;">URI &#x8DEF;&#x5F84;&#x53C2;&#x6570;</h2>
+<p>&#x8DEF;&#x5F84;&#x53C2;&#x6570;&#x9700;&#x8981;&#x5B9A;&#x4E49;&#x8DEF;&#x7531;&#x65F6;&#xFF0C;&#x5728;&#x8DEF;&#x5F84;&#x4E2D;&#x8FDB;&#x884C;&#x6CE8;&#x660E;&#xFF0C;&#x7528; c.Param() &#x8BFB;&#x53D6;&#xFF1A;</p>
+<pre><code class="lang-go"><span class="hljs-keyword">func</span> userName(c *gin.Context) {
+    name := c.Param(<span class="hljs-string">&quot;name&quot;</span>)
+    c.String(http.StatusOK, <span class="hljs-string">&quot;Hello %s\n&quot;</span>, name)
+}
+
+<span class="hljs-keyword">func</span> userNameAction(c *gin.Context) {
+    name := c.Param(<span class="hljs-string">&quot;name&quot;</span>)
+    action := c.Param(<span class="hljs-string">&quot;action&quot;</span>)
+    c.String(http.StatusOK, <span class="hljs-string">&quot;%s is %s\n&quot;</span>, name, action)
+}
+
+<span class="hljs-keyword">func</span> main() {
+    router := gin.Default()
+
+    <span class="hljs-comment">// curl  127.0.0.1:8080/user/xiaoming</span>
+    <span class="hljs-comment">// :name &#x5FC5;&#x987B;&#x5B58;&#x5728;</span>
+    <span class="hljs-comment">// &#x5339;&#x914D; /user/NAME</span>
+    <span class="hljs-comment">// &#x4E0D;&#x5339;&#x914D; /user &#x6216;&#x8005; /user/</span>
+    router.GET(<span class="hljs-string">&quot;/user/:name&quot;</span>, userName)
+
+    <span class="hljs-comment">// curl 127.0.0.1:8080/user/xiaoming/run</span>
+    <span class="hljs-comment">// *action &#x662F;&#x53EF;&#x9009;&#x7684;</span>
+    <span class="hljs-comment">// &#x5339;&#x914D; /user/NAME/</span>
+    <span class="hljs-comment">// &#x5339;&#x914D; /user/NAME/ACTION</span>
+    <span class="hljs-comment">// &#x5982;&#x679C; /user/NAME &#x6CA1;&#x6709;&#x5BF9;&#x5E94;&#x7684; router&#xFF0C;&#x91CD;&#x5B9A;&#x5411;&#x5230; /user/NAME/</span>
+    router.GET(<span class="hljs-string">&quot;/user/:name/*action&quot;</span>, userNameAction)
+
+    <span class="hljs-comment">// curl -X POST 127.0.0.1:8080/user/xiaoming/run</span>
+    <span class="hljs-comment">// POST &#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8DEF;&#x5F84;&#x53C2;&#x6570;</span>
+    router.POST(<span class="hljs-string">&quot;/user/:name/*action&quot;</span>, userNameAction)
+
+    router.Run()
+}
+</code></pre>
+<p>&#x7528; c.BindUri &#x76F4;&#x63A5;&#x89E3;&#x6790;&#x5230;&#x53D8;&#x91CF;&#x4E2D;&#xFF1A;</p>
+<pre><code class="lang-go"><span class="hljs-keyword">type</span> UserInfo <span class="hljs-keyword">struct</span> {
+    Name   <span class="hljs-keyword">string</span> <span class="hljs-string">`uri:&quot;name&quot;`</span>
+    Action <span class="hljs-keyword">string</span> <span class="hljs-string">`uri:&quot;action&quot;`</span>
+}
+
+<span class="hljs-keyword">func</span> bindURI(c *gin.Context) {
+    <span class="hljs-keyword">var</span> userInfo UserInfo
+    c.BindUri(&amp;userInfo)
+    c.JSON(http.StatusOK, userInfo)
+}
+</code></pre>
+<h2 id="post&#xFF1A;form-&#x8868;&#x5355;&#x6570;&#x636E;">POST&#xFF1A;form &#x8868;&#x5355;&#x6570;&#x636E;</h2>
+<p>post &#x63D0;&#x4EA4;&#x7684;&#x53C2;&#x6570;&#x4F4D;&#x4E8E; http &#x8BF7;&#x6C42;&#x7684; body &#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x4EFB;&#x610F;&#x5B57;&#x7B26;&#xFF0C;&#x8FD9;&#x91CC;&#x4EE5; form &#x8868;&#x5355;&#x6570;&#x636E;&#x4E3A;&#x4F8B;&#x3002;</p>
+<p>form &#x8868;&#x5355;&#x53C2;&#x6570;&#x7528; c.PostXX &#x8BFB;&#x53D6;&#xFF0C;&#x683C;&#x5F0F;&#x4E0E; URL query &#x53C2;&#x6570;&#x76F8;&#x540C;&#xFF0C;&#x4E5F;&#x652F;&#x6301;&#x6570;&#x7EC4;&#x548C; map&#x3002;</p>
+<pre><code class="lang-go"><span class="hljs-keyword">func</span> postForm(c *gin.Context) {
+    message := c.PostForm(<span class="hljs-string">&quot;message&quot;</span>)
+    name := c.DefaultPostForm(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;guest&quot;</span>)
+    c.String(http.StatusOK, <span class="hljs-string">&quot;%s %s&quot;</span>, name, message)
+}
+
+<span class="hljs-keyword">func</span> postFormMap(c *gin.Context) {
+    ids := c.PostFormMap(<span class="hljs-string">&quot;ids&quot;</span>)
+    c.JSON(http.StatusOK, gin.H{
+        <span class="hljs-string">&quot;ids&quot;</span>: ids,
+    })
+}
+
+<span class="hljs-keyword">func</span> postFormArray(c *gin.Context) {
+    ids := c.PostFormArray(<span class="hljs-string">&quot;ids&quot;</span>)
+    c.JSON(http.StatusOK, gin.H{
+        <span class="hljs-string">&quot;ids&quot;</span>: ids,
+    })
+}
+
+<span class="hljs-keyword">func</span> main() {
+    router := gin.Default()
+
+    <span class="hljs-comment">// curl -XPOST 127.0.0.1:8080/form -d &quot;name=xiaoming&amp;message=welcome!&quot;</span>
+    router.POST(<span class="hljs-string">&quot;/form&quot;</span>, postForm)
+
+    <span class="hljs-comment">// curl -XPOST 127.0.0.1:8080/map -d &quot;ids[first]=100&amp;ids[second]=200&quot;</span>
+    router.POST(<span class="hljs-string">&quot;/map&quot;</span>, postFormMap)
+
+    <span class="hljs-comment">// curl -XPOST 127.0.0.1:8080/map -d &quot;ids=100&amp;ids=200&quot;</span>
+    router.POST(<span class="hljs-string">&quot;/arr&quot;</span>, postFormArray)
+
+    router.Run()
+}
+</code></pre>
+<h2 id="post&#xFF1A;jsonxmlyaml">POST&#xFF1A;json/xml/yaml</h2>
+<p>&#x524D;&#x9762;&#x4F8B;&#x5B50;&#x8BFB;&#x53D6;&#x4E86; form &#x8868;&#x5355;&#x53C2;&#x6570;&#xFF0C;&#x5728;&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;post &#x63D0;&#x4EA4;&#x7684;&#x53C2;&#x6570;&#x8FD8;&#x7ECF;&#x5E38;&#x662F; json&#x3001;xml &#x683C;&#x5F0F;&#x3002;</p>
+<p>Gin &#x5185;&#x7F6E;&#x4E86; json&#x3001;xml &#x6570;&#x636E;&#x7684;&#x89E3;&#x6790;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x989D;&#x5916;&#x5199;&#x8F6C;&#x6362;&#x4EE3;&#x7801;&#x3002;Gin &#x53EF;&#x4EE5;&#x628A; form &#x8868;&#x5355;&#x3001;json&#x3001;xml &#x6570;&#x636E;&#x76F4;&#x63A5;&#x89E3;&#x6790;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x53D8;&#x91CF;&#x4E2D;&#x3002;</p>
+<p>&#x5728;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;&#x7684;&#x7C7B;&#x578B;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5728; struct tag &#x4E2D;&#x6307;&#x5B9A;&#x5BF9;&#x5E94;&#x7684;&#x53C2;&#x6570;&#x540D;&#xFF1A;</p>
+<pre><code class="lang-go"><span class="hljs-keyword">type</span> Login <span class="hljs-keyword">struct</span> {
+    User     <span class="hljs-keyword">string</span> <span class="hljs-string">`form:&quot;user&quot; json:&quot;user&quot; xml:&quot;user&quot; binding:&quot;required&quot;`</span>
+    Password <span class="hljs-keyword">string</span> <span class="hljs-string">`form:&quot;password&quot; json:&quot;password&quot; xml:&quot;password&quot; binding:&quot;required&quot; `</span>
+}
+</code></pre>
+<p>&#x89E3;&#x6790; JSON &#x6570;&#x636E;&#xFF1A;</p>
+<pre><code class="lang-go"><span class="hljs-keyword">func</span> bindXML(c *gin.Context) {
+    <span class="hljs-keyword">var</span> login Login
+    <span class="hljs-keyword">if</span> err := c.ShouldBindXML(&amp;login); err != <span class="hljs-literal">nil</span> {
+        c.JSON(http.StatusBadRequest, gin.H{<span class="hljs-string">&quot;error&quot;</span>: err.Error()})
+        <span class="hljs-keyword">return</span>
+    }
+    c.JSON(http.StatusOK, login)
+}
+</code></pre>
+<p>&#x89E3;&#x6790; XML &#x6570;&#x636E;&#xFF1A;</p>
+<pre><code class="lang-go"><span class="hljs-keyword">func</span> bindXML(c *gin.Context) {
+    <span class="hljs-keyword">var</span> login Login
+    <span class="hljs-keyword">if</span> err := c.ShouldBindXML(&amp;login); err != <span class="hljs-literal">nil</span> {
+        c.JSON(http.StatusBadRequest, gin.H{<span class="hljs-string">&quot;error&quot;</span>: err.Error()})
+        <span class="hljs-keyword">return</span>
+    }
+    c.JSON(http.StatusOK, login)
+}
+</code></pre>
+<p>&#x652F;&#x6301; yaml &#x683C;&#x5F0F;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x4F7F;&#x7528; c.ShouldBindYAML()&#x3002;</p>
+<h2 id="post-&#x540C;&#x65F6;&#x652F;&#x6301;&#x591A;&#x79CD;&#x683C;&#x5F0F;">POST: &#x540C;&#x65F6;&#x652F;&#x6301;&#x591A;&#x79CD;&#x683C;&#x5F0F;</h2>
+<p>c.ShouldBind() &#x652F;&#x6301;&#x591A;&#x79CD;&#x683C;&#x5F0F;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x5982;&#x679C;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x662F; GET&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x6309;&#x7167; form &#x89C4;&#x5219;&#x89E3;&#x6790; query &#x53C2;&#x6570;&#xFF0C;&#x5982;&#x679C;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x662F; POST&#xFF0C;&#x6839;&#x636E;&#x8BF7;&#x6C42;&#x5934;&#x4E2D;&#x7684; Content-Type &#x81EA;&#x52A8;&#x9009;&#x62E9;&#x5BF9;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-go"><span class="hljs-keyword">func</span> bindALL(c *gin.Context) {
+    <span class="hljs-keyword">var</span> login Login
+    <span class="hljs-keyword">if</span> err := c.ShouldBind(&amp;login); err != <span class="hljs-literal">nil</span> {
+        c.JSON(http.StatusBadRequest, gin.H{<span class="hljs-string">&quot;error&quot;</span>: err.Error()})
+        <span class="hljs-keyword">return</span>
+    }
+    c.JSON(http.StatusOK, login)
+}
+</code></pre>
+<p>Gin &#x652F;&#x6301;&#x7684; Content-Type&#xFF1A;</p>
+<pre><code class="lang-go">MIMEJSON              = <span class="hljs-string">&quot;application/json&quot;</span>
+MIMEHTML              = <span class="hljs-string">&quot;text/html&quot;</span>
+MIMEXML               = <span class="hljs-string">&quot;application/xml&quot;</span>
+MIMEXML2              = <span class="hljs-string">&quot;text/xml&quot;</span>
+MIMEPlain             = <span class="hljs-string">&quot;text/plain&quot;</span>
+MIMEPOSTForm          = <span class="hljs-string">&quot;application/x-www-form-urlencoded&quot;</span>
+MIMEMultipartPOSTForm = <span class="hljs-string">&quot;multipart/form-data&quot;</span>
+MIMEPROTOBUF          = <span class="hljs-string">&quot;application/x-protobuf&quot;</span>
+MIMEMSGPACK           = <span class="hljs-string">&quot;application/x-msgpack&quot;</span>
+MIMEMSGPACK2          = <span class="hljs-string">&quot;application/msgpack&quot;</span>
+MIMEYAML              = <span class="hljs-string">&quot;application/x-yaml&quot;</span>
+</code></pre>
+<h2 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h2>
+<ol>
+<li><a href="https://www.lijiaocn.com" title="&#x674E;&#x4F76;&#x6FB3;&#x7684;&#x535A;&#x5BA2;" target="_blank">&#x674E;&#x4F76;&#x6FB3;&#x7684;&#x535A;&#x5BA2;</a></li>
+</ol>
+<script type="text/javascript">var className='atoc';</script>
+                                
+<div style="display:flex;flex-direction:row;justify-content:center">
+<br>
+<a href="https://weibo.com/zuiniur/profile"><img height="250px" alt="微信公众号:我的资产" src="https://www.lijiaocn.com/money/img/self.jpg"/></a>
+<a href="https://study.163.com/provider/400000000376006/course.htm?share=2&shareId=400000000376006"><img height="250px" alt="微信公众号:我的网课" src="https://www.lijiaocn.com/img/class.jpg"/></a>
+</div>
+
+<div>
+<!-- 匹配内容 -->
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="autorelaxed"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="6443696990"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<!-- Page_Bottom -->
+<!--div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="7945072540"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div-->
+
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="router.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 路由管理">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"参数读取","level":"3.4","depth":1,"next":{"title":"响应数据","level":"3.5","depth":1,"ref":"","articles":[]},"previous":{"title":"路由管理","level":"3.3","depth":1,"path":"gin/router.md","ref":"./gin/router.md","articles":[]},"dir":"ltr"},"config":{"plugins":[{"name":"theme-lijiaocn","version":"git+https://github.com/lijiaocn/theme-lijiaocn.git"},"atoc","toggle-chapters","rss"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"atoc":{"addClass":true,"className":"atoc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"rss":{"categories":[],"title":"Go 语言实用编程","description":"Go 语言使用编程手册，帮你更好的理解 Go 语言，写出更高效、更规范、更不易出错的代码","author":"李佶澳","site_url":"https://www.lijiaocn.com/go-detail/","feed_url":"https://www.lijiaocn.com/go-detail/feed.xml"},"highlight":{},"theme-lijiaocn":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"lijiaocn@foxmail.com","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"language":"zh-hans","gitbook":">=3.0.0"},"file":{"path":"gin/param.md","mtime":"2020-02-23T14:40:23.722Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-23T14:41:45.645Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-atoc/atoc.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-rss/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

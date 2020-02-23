@@ -4,7 +4,7 @@
         <description><![CDATA[Go 语言使用编程手册，帮你更好的理解 Go 语言，写出更高效、更规范、更不易出错的代码]]></description>
         <link>https://www.lijiaocn.com/go-detail/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sun, 23 Feb 2020 06:09:54 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 23 Feb 2020 14:41:51 GMT</lastBuildDate>
         <atom:link href="https://www.lijiaocn.com/go-detail/feed.xml" rel="self" type="application/rss+xml"/>
         <author><![CDATA[李佶澳]]></author>
         <item>
@@ -68,6 +68,34 @@
             <description><![CDATA[JSON and Go 中介绍反序列化时说，介绍了目标 struct 中有 Reference Type 类型成员时的处理：]]></description>
             <link>https://www.lijiaocn.com/go-detail/article/unmarshal.html</link>
             <guid isPermaLink="true">https://www.lijiaocn.com/go-detail/article/unmarshal.html</guid>
+            <dc:creator><![CDATA[李佶澳]]></dc:creator>
+        </item>
+        <item>
+            <title><![CDATA[Gin 框架的学习资料]]></title>
+            <description><![CDATA[Go 内置了 http.Server 的实现，如下：]]></description>
+            <link>https://www.lijiaocn.com/go-detail/gin/readme.html</link>
+            <guid isPermaLink="true">https://www.lijiaocn.com/go-detail/gin/readme.html</guid>
+            <dc:creator><![CDATA[李佶澳]]></dc:creator>
+        </item>
+        <item>
+            <title><![CDATA[Gin 快速开始]]></title>
+            <description><![CDATA[建议直接使用 Go 1.13 以及以上版本，用 go mod 进行依赖管理（代码要如何组织?)。]]></description>
+            <link>https://www.lijiaocn.com/go-detail/gin/quickstart.html</link>
+            <guid isPermaLink="true">https://www.lijiaocn.com/go-detail/gin/quickstart.html</guid>
+            <dc:creator><![CDATA[李佶澳]]></dc:creator>
+        </item>
+        <item>
+            <title><![CDATA[Gin 的 router 管理]]></title>
+            <description><![CDATA[这里所说的路由就是就是 http 请求的 method、path 与处理函数的对应关系。]]></description>
+            <link>https://www.lijiaocn.com/go-detail/gin/router.html</link>
+            <guid isPermaLink="true">https://www.lijiaocn.com/go-detail/gin/router.html</guid>
+            <dc:creator><![CDATA[李佶澳]]></dc:creator>
+        </item>
+        <item>
+            <title><![CDATA[Gin 的请求参数获取]]></title>
+            <description><![CDATA[http 的请求参数通常通过以下集中方式传入。]]></description>
+            <link>https://www.lijiaocn.com/go-detail/gin/param.html</link>
+            <guid isPermaLink="true">https://www.lijiaocn.com/go-detail/gin/param.html</guid>
             <dc:creator><![CDATA[李佶澳]]></dc:creator>
         </item>
     </channel>
