@@ -19,7 +19,7 @@
 * [快速开始](./gin/quickstart.md)
 * [路由管理](./gin/router.md)
 * [参数读取](./gin/param.md)
-* 响应数据
+* [响应数据](./gin/response.md)
 * 日志管理
 * 配置读取
 * 静态文件

@@ -21,7 +21,7 @@ http 的请求参数通常通过以下集中方式传入。
 
 以上参数以及其它所有的请求信息，都传入的 *gin.Context 获取。
 
-## URL query 参数
+## URI query 参数
 
 URL 的多个 query 参数用 & 间隔，用 c.QueryXX 方法读取：
 
@@ -248,7 +248,7 @@ func bindXML(c *gin.Context) {
 
 支持 yaml 格式的数据，使用 c.ShouldBindYAML()。
 
-## POST: 同时支持多种格式
+## POST：同时支持多种格式
 
 c.ShouldBind() 支持多种格式的数据，如果请求方法是 GET，那么它按照 form 规则解析 query 参数，如果请求方法是 POST，根据请求头中的 Content-Type 自动选择对应的方法：
 
