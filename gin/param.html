@@ -66,6 +66,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="response.html" />
+    
     
     <link rel="prev" href="router.html" />
     
@@ -359,14 +361,14 @@ var _hmt = _hmt || [];
             
         </li>
     
-        <li class="chapter " data-level="3.5" >
+        <li class="chapter " data-level="3.5" data-path="response.html">
             
-                <span>
+                <a href="response.html">
             
                     
                     响应数据
             
-                </span>
+                </a>
             
 
             
@@ -511,12 +513,12 @@ var _hmt = _hmt || [];
                                 <!-- toc -->
 <ul>
 <li><a href="#gin-&#x7684;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x83B7;&#x53D6;">Gin &#x7684;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x83B7;&#x53D6;</a><ul>
-<li><a href="#url-query-&#x53C2;&#x6570;">URL query &#x53C2;&#x6570;</a></li>
+<li><a href="#uri-query-&#x53C2;&#x6570;">URI query &#x53C2;&#x6570;</a></li>
 <li><a href="#http-header">Http Header</a></li>
 <li><a href="#uri-&#x8DEF;&#x5F84;&#x53C2;&#x6570;">URI &#x8DEF;&#x5F84;&#x53C2;&#x6570;</a></li>
 <li><a href="#post&#xFF1A;form-&#x8868;&#x5355;&#x6570;&#x636E;">POST&#xFF1A;form &#x8868;&#x5355;&#x6570;&#x636E;</a></li>
 <li><a href="#post&#xFF1A;jsonxmlyaml">POST&#xFF1A;json/xml/yaml</a></li>
-<li><a href="#post-&#x540C;&#x65F6;&#x652F;&#x6301;&#x591A;&#x79CD;&#x683C;&#x5F0F;">POST: &#x540C;&#x65F6;&#x652F;&#x6301;&#x591A;&#x79CD;&#x683C;&#x5F0F;</a></li>
+<li><a href="#post&#xFF1A;&#x540C;&#x65F6;&#x652F;&#x6301;&#x591A;&#x79CD;&#x683C;&#x5F0F;">POST&#xFF1A;&#x540C;&#x65F6;&#x652F;&#x6301;&#x591A;&#x79CD;&#x683C;&#x5F0F;</a></li>
 <li><a href="#&#x53C2;&#x8003;">&#x53C2;&#x8003;</a></li>
 </ul>
 </li>
@@ -541,7 +543,7 @@ var _hmt = _hmt || [];
 </li>
 </ul>
 <p>&#x4EE5;&#x4E0A;&#x53C2;&#x6570;&#x4EE5;&#x53CA;&#x5176;&#x5B83;&#x6240;&#x6709;&#x7684;&#x8BF7;&#x6C42;&#x4FE1;&#x606F;&#xFF0C;&#x90FD;&#x4F20;&#x5165;&#x7684; *gin.Context &#x83B7;&#x53D6;&#x3002;</p>
-<h2 id="url-query-&#x53C2;&#x6570;">URL query &#x53C2;&#x6570;</h2>
+<h2 id="uri-query-&#x53C2;&#x6570;">URI query &#x53C2;&#x6570;</h2>
 <p>URL &#x7684;&#x591A;&#x4E2A; query &#x53C2;&#x6570;&#x7528; &amp; &#x95F4;&#x9694;&#xFF0C;&#x7528; c.QueryXX &#x65B9;&#x6CD5;&#x8BFB;&#x53D6;&#xFF1A;</p>
 <pre><code class="lang-go"><span class="hljs-comment">//&#x5339;&#x914D;&#xFF1A;127.0.0.1:8080/query?name=xiaoming&amp;age=11</span>
 <span class="hljs-keyword">func</span> query(c *gin.Context) {
@@ -721,7 +723,7 @@ var _hmt = _hmt || [];
 }
 </code></pre>
 <p>&#x652F;&#x6301; yaml &#x683C;&#x5F0F;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x4F7F;&#x7528; c.ShouldBindYAML()&#x3002;</p>
-<h2 id="post-&#x540C;&#x65F6;&#x652F;&#x6301;&#x591A;&#x79CD;&#x683C;&#x5F0F;">POST: &#x540C;&#x65F6;&#x652F;&#x6301;&#x591A;&#x79CD;&#x683C;&#x5F0F;</h2>
+<h2 id="post&#xFF1A;&#x540C;&#x65F6;&#x652F;&#x6301;&#x591A;&#x79CD;&#x683C;&#x5F0F;">POST&#xFF1A;&#x540C;&#x65F6;&#x652F;&#x6301;&#x591A;&#x79CD;&#x683C;&#x5F0F;</h2>
 <p>c.ShouldBind() &#x652F;&#x6301;&#x591A;&#x79CD;&#x683C;&#x5F0F;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x5982;&#x679C;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x662F; GET&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x6309;&#x7167; form &#x89C4;&#x5219;&#x89E3;&#x6790; query &#x53C2;&#x6570;&#xFF0C;&#x5982;&#x679C;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x662F; POST&#xFF0C;&#x6839;&#x636E;&#x8BF7;&#x6C42;&#x5934;&#x4E2D;&#x7684; Content-Type &#x81EA;&#x52A8;&#x9009;&#x62E9;&#x5BF9;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
 <pre><code class="lang-go"><span class="hljs-keyword">func</span> bindALL(c *gin.Context) {
     <span class="hljs-keyword">var</span> login Login
@@ -751,11 +753,6 @@ MIMEYAML              = <span class="hljs-string">&quot;application/x-yaml&quot;
 </ol>
 <script type="text/javascript">var className='atoc';</script>
                                 
-<div style="display:flex;flex-direction:row;justify-content:center">
-<br>
-<a href="https://weibo.com/zuiniur/profile"><img height="250px" alt="微信公众号:我的资产" src="https://www.lijiaocn.com/money/img/self.jpg"/></a>
-<a href="https://study.163.com/provider/400000000376006/course.htm?share=2&shareId=400000000376006"><img height="250px" alt="微信公众号:我的网课" src="https://www.lijiaocn.com/img/class.jpg"/></a>
-</div>
 
 <div>
 <!-- 匹配内容 -->
@@ -782,6 +779,12 @@ MIMEYAML              = <span class="hljs-string">&quot;application/x-yaml&quot;
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div-->
+
+<div style="display:flex;flex-direction:row;justify-content:center">
+<br>
+<a href="https://study.163.com/provider/400000000376006/course.htm?share=2&shareId=400000000376006"><img height="250px" alt="微信公众号:我的网课" src="https://www.lijiaocn.com/img/class.jpg"/></a>
+<a href="https://weibo.com/zuiniur/profile"><img height="250px" alt="微信公众号:我的资产" src="https://www.lijiaocn.com/money/img/self.jpg"/></a>
+</div>
 
 
                                 
@@ -810,10 +813,14 @@ MIMEYAML              = <span class="hljs-string">&quot;application/x-yaml&quot;
 
             
                 
-                <a href="router.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 路由管理">
+                <a href="router.html" class="navigation navigation-prev " aria-label="Previous page: 路由管理">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="response.html" class="navigation navigation-next " aria-label="Next page: 响应数据">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -822,7 +829,7 @@ MIMEYAML              = <span class="hljs-string">&quot;application/x-yaml&quot;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"参数读取","level":"3.4","depth":1,"next":{"title":"响应数据","level":"3.5","depth":1,"ref":"","articles":[]},"previous":{"title":"路由管理","level":"3.3","depth":1,"path":"gin/router.md","ref":"./gin/router.md","articles":[]},"dir":"ltr"},"config":{"plugins":[{"name":"theme-lijiaocn","version":"git+https://github.com/lijiaocn/theme-lijiaocn.git"},"atoc","toggle-chapters","rss"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"atoc":{"addClass":true,"className":"atoc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"rss":{"categories":[],"title":"Go 语言实用编程","description":"Go 语言使用编程手册，帮你更好的理解 Go 语言，写出更高效、更规范、更不易出错的代码","author":"李佶澳","site_url":"https://www.lijiaocn.com/go-detail/","feed_url":"https://www.lijiaocn.com/go-detail/feed.xml"},"highlight":{},"theme-lijiaocn":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"lijiaocn@foxmail.com","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"language":"zh-hans","gitbook":">=3.0.0"},"file":{"path":"gin/param.md","mtime":"2020-02-23T14:40:23.722Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-23T14:41:45.645Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"参数读取","level":"3.4","depth":1,"next":{"title":"响应数据","level":"3.5","depth":1,"path":"gin/response.md","ref":"./gin/response.md","articles":[]},"previous":{"title":"路由管理","level":"3.3","depth":1,"path":"gin/router.md","ref":"./gin/router.md","articles":[]},"dir":"ltr"},"config":{"plugins":[{"name":"theme-lijiaocn","version":"git+https://github.com/lijiaocn/theme-lijiaocn.git"},"atoc","toggle-chapters","rss"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"atoc":{"addClass":true,"className":"atoc"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"rss":{"categories":[],"title":"Go 语言实用编程","description":"Go 语言使用编程手册，帮你更好的理解 Go 语言，写出更高效、更规范、更不易出错的代码","author":"李佶澳","site_url":"https://www.lijiaocn.com/go-detail/","feed_url":"https://www.lijiaocn.com/go-detail/feed.xml"},"highlight":{},"theme-lijiaocn":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"lijiaocn@foxmail.com","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"language":"zh-hans","gitbook":">=3.0.0"},"file":{"path":"gin/param.md","mtime":"2020-02-24T02:08:29.289Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-21T13:00:16.628Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

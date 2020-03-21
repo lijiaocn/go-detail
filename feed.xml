@@ -4,7 +4,7 @@
         <description><![CDATA[Go 语言使用编程手册，帮你更好的理解 Go 语言，写出更高效、更规范、更不易出错的代码]]></description>
         <link>https://www.lijiaocn.com/go-detail/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sun, 23 Feb 2020 14:41:51 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 21 Mar 2020 13:00:21 GMT</lastBuildDate>
         <atom:link href="https://www.lijiaocn.com/go-detail/feed.xml" rel="self" type="application/rss+xml"/>
         <author><![CDATA[李佶澳]]></author>
         <item>
@@ -96,6 +96,13 @@
             <description><![CDATA[http 的请求参数通常通过以下集中方式传入。]]></description>
             <link>https://www.lijiaocn.com/go-detail/gin/param.html</link>
             <guid isPermaLink="true">https://www.lijiaocn.com/go-detail/gin/param.html</guid>
+            <dc:creator><![CDATA[李佶澳]]></dc:creator>
+        </item>
+        <item>
+            <title><![CDATA[Gin 如何返回响应数据]]></title>
+            <description><![CDATA[Http 访问就是“请求-响应”，Gin 提供了丰富的返回响应数据的方法。]]></description>
+            <link>https://www.lijiaocn.com/go-detail/gin/response.html</link>
+            <guid isPermaLink="true">https://www.lijiaocn.com/go-detail/gin/response.html</guid>
             <dc:creator><![CDATA[李佶澳]]></dc:creator>
         </item>
     </channel>
